@@ -1,19 +1,27 @@
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Rigidbody rbPlayer;
+    [SerializeField] private float speed = 3.0f;
 
-    public int speed = 3;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void FixedUpdate()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            rbPlayer.AddForce(-10.0f, 0.0f, 0.0f);
+        }
+
+        if(Input.GetKey(KeyCode.RightArrow))
+        {
+            rbPlayer.AddForce(10.0f, 0.0f, 0.0f);
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            rbPlayer.AddForce(0.0f, 0.0f, Time.fixedDeltaTime * speed);
+        }
     }
 }

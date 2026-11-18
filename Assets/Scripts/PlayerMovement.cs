@@ -5,23 +5,20 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody rbPlayer;
     [SerializeField] private float speed = 3.0f;
+    [SerializeField] private float speed_slide = 3.0f;
 
     void FixedUpdate()
     {
-
-        if(Input.GetKey(KeyCode.LeftArrow))
+        rbPlayer.AddForce(0.0f, 0.0f, speed);
+        if (Input.GetKey(KeyCode.Q))
         {
-            rbPlayer.AddForce(-10.0f, 0.0f, 0.0f);
+            rbPlayer.AddForce(-speed_slide, 0.0f, 0.0f, ForceMode.VelocityChange);
         }
 
-        if(Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.D))
         {
-            rbPlayer.AddForce(10.0f, 0.0f, 0.0f);
+            rbPlayer.AddForce(speed_slide, 0.0f, 0.0f, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            rbPlayer.AddForce(0.0f, 0.0f, Time.fixedDeltaTime * speed);
-        }
     }
 }
